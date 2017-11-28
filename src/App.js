@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import logo from './logo.svg'
 import './App.css'
 import TodoItem from './component/TodoItem'
+import TodoItemStatus from './component/TodoItemsStatus'
 
 // UI (view/controller)
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
       { description: 'Second', completed: true },
       { description: 'Third', completed: false },
       { description: 'Fourth', completed: true },
+      { description: 'Fifth', completed: false },
     ]
   }
 
@@ -207,6 +209,11 @@ class App extends Component {
             })
           }
         </div>
+
+        <TodoItemStatus
+          numberOfCompletedItems={ filterCompletedItems(items).length }
+          numberOfIncompleteItems={ filterIncompleteItems(items).length }
+        />
       </div>
     )
   }
