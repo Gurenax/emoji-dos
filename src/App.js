@@ -55,38 +55,65 @@ class App extends Component {
         }
       })
       
-      // Get curent items
-      const items = prevState.items
-      // Find the item with the particular 'index'
-      const item = items[index]
-      // Toggle completed: f -> t, t -> f
-      item.completed = !item.completed
+      // // Get curent items
+      // const items = prevState.items
+      // // Find the item with the particular 'index'
+      // const item = items[index]
+      // // Toggle completed: f -> t, t -> f
+      // item.completed = !item.completed
+      // // Return the changes we have
+      // return {
+      //   items: items
+      // }
+      
       // Return the changes we have
       return {
-        items: items
+        items: afterItems
       }
     })
   }
 
   render() {
     const items = this.state.items
+    const total = items.length
+
+    let totalCompleted = 0
+    let totalIncomplete = 0
+    items.map( item => {
+      if( item.completed ) {
+        totalCompleted += 1
+      }
+      else {
+        totalIncomplete += 1
+      }
+    })
 
     return (
       <div className="App">
-      {
-        items.map( (item, index) => (
-          <TodoItem
-            key={ index }
-            description={ item.description }
-            completed={ item.completed }
-            onToggleCompleted={ () => {
-                console.log('TodoItem onToggleCompleted received', index)
-                this.onToggleItemAtIndex(index)
+        <dl>
+          <dt>Total</dt>
+          <dd>{ total }</dd>
+
+          <dt>Total Completed</dt>
+          <dd>{ totalCompleted }</dd>
+
+          <dt>Total Incomplete</dt>
+          <dd>{ totalIncomplete }</dd>
+        </dl>
+        {
+          items.map( (item, index) => (
+            <TodoItem
+              key={ index }
+              description={ item.description }
+              completed={ item.completed }
+              onToggleCompleted={ () => {
+                  console.log('TodoItem onToggleCompleted received', index)
+                  this.onToggleItemAtIndex(index)
+                }
               }
-            }
-          />
-        ))
-      }
+            />
+          ))
+        }
       </div>
     )
   }
