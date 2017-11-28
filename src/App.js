@@ -111,6 +111,7 @@ class App extends Component {
       else {
         totalIncomplete += 1
       }
+      return null
     })
 
     function filterCompletedItems(items) {
@@ -179,6 +180,7 @@ class App extends Component {
                   />
                 )
               }
+              return null
             })
           }
         </div>
@@ -206,6 +208,7 @@ class App extends Component {
                   />
                 )
               }
+              return null
             })
           }
         </div>
