@@ -209,8 +209,8 @@ class App extends Component {
                       this.onToggleItemAtIndex(index)
                     } }
                     onChangeItemDescription={ ( description ) => {
-                        console.log('Item changing for index', index, description)
-                        this.onChangeItemDescriptionAtIndex(index, description)
+                      console.log('Item changing for index', index, description)
+                      this.onChangeItemDescriptionAtIndex(index, description)
                     } }
                   />
                 )
