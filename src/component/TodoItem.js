@@ -30,6 +30,9 @@ const TodoItem = ({
           console.log('Typed..', event.target.value)
           onChangeItemDescription( event.target.value )
         }}
+        onFocus={ (event) => {
+          console.log('Focused..')
+        }}
       />
     </label>
   )

@@ -128,13 +128,13 @@ class App extends Component {
     return (
       <div className="App">
         <dl>
-          <dt>Total</dt>
+          <dt><strong>Total</strong></dt>
           <dd>{ total }</dd>
 
-          <dt>Total Completed</dt>
+          <dt><strong>Total Completed</strong></dt>
           <dd>{ totalCompleted }</dd>
 
-          <dt>Total Incomplete</dt>
+          <dt><strong>Total Incomplete</strong></dt>
           <dd>{ totalIncomplete }</dd>
         </dl>
         {/* {
@@ -210,6 +210,7 @@ class App extends Component {
           }
         </div>
 
+        <br/>
         <TodoItemStatus
           numberOfCompletedItems={ filterCompletedItems(items).length }
           numberOfIncompleteItems={ filterIncompleteItems(items).length }

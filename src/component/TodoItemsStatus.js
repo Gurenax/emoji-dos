@@ -17,7 +17,7 @@ const TodoItemStatus = ({
   }
   return (
     <div>
-      { completedItemsDescription(numberOfCompletedItems) } : { incompleteItemsEmoji(numberOfIncompleteItems) }
+      <strong>{ completedItemsDescription(numberOfCompletedItems) }</strong> : { incompleteItemsEmoji(numberOfIncompleteItems) }
     </div>
   )
 }
