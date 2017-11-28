@@ -1,8 +1,8 @@
 .App {
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  max-width: 30rem;
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
 }
 /* 
 .App-logo {
