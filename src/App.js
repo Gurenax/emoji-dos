@@ -4,7 +4,7 @@ import './App.css'
 import TodoItem from './component/TodoItem'
 import TodoItemStatus from './component/TodoItemsStatus'
 
-// Helper function to get item index for description
+// Helper function to get item and change description
 const changeDescriptionOfItemAtIndex = (items, index, description) => {
   const item = items[index]
   item.description = description
