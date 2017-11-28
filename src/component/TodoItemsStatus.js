@@ -9,7 +9,7 @@ const TodoItemStatus = ({
   }
   function incompleteItemsEmoji(numberOfIncompleteItems) {
     const emoji = Array.from('😱🙀😬😘😸😍')
-    let emojiDescription = []
+    let emojiDescription = ''
     for(let i=0; i<numberOfIncompleteItems; i++) {
       emojiDescription += emoji[i]
     }
