@@ -4,6 +4,13 @@ import './App.css'
 import TodoItem from './component/TodoItem'
 import TodoItemStatus from './component/TodoItemsStatus'
 
+// Helper function to get item index for description
+const changeDescriptionOfItemAtIndex = (items, index, description) => {
+  const item = items[index]
+  item.description = description
+  return items
+}
+
 // UI (view/controller)
 class App extends Component {
   state = {
@@ -31,6 +38,7 @@ class App extends Component {
   //     }
   //   })
   // }
+  
   onToggleItemAtIndex = (index) => {
     // Data (model)
     this.setState( (prevState) => {
@@ -77,24 +85,27 @@ class App extends Component {
 
   onChangeItemDescriptionAtIndex = (index, description) => {
     this.setState( (prevState) => {
-      const beforeItems = prevState.items
-      const afterItems = beforeItems.map( (item, currentIndex) => {
-        // WHen we have found the index of the item to change
-        if (currentIndex === index) {
-          const copy = {
-            ...item,
-            description: description
-          }
-          return copy
-        }
-        else {
-          return item
-        }
-      })
+      // const beforeItems = prevState.items
+      // const afterItems = beforeItems.map( (item, currentIndex) => {
+      //   // WHen we have found the index of the item to change
+      //   if (currentIndex === index) {
+      //     const copy = {
+      //       ...item,
+      //       description: description
+      //     }
+      //     return copy
+      //   }
+      //   else {
+      //     return item
+      //   }
+      // })
       
-      return {
-        items: afterItems
-      }
+      // return {
+      //   items: afterItems
+      // }
+      let items = prevState.items
+      items = changeDescriptionOfItemAtIndex(items, index, description)
+      return { items }
     })
   }
 
@@ -168,15 +179,13 @@ class App extends Component {
                     description={ item.description }
                     completed={ item.completed }
                     onToggleCompleted={ () => {
-                        console.log('TodoItem onToggleCompleted received', index)
-                        this.onToggleItemAtIndex(index)
-                      }
-                    }
+                      console.log('TodoItem onToggleCompleted received', index)
+                      this.onToggleItemAtIndex(index)
+                    } }
                     onChangeItemDescription={ ( description ) => {
-                        console.log('Item changing for index', index, description)
-                        this.onChangeItemDescriptionAtIndex(index, description)
-                      }
-                    }
+                      console.log('Item changing for index', index, description)
+                      this.onChangeItemDescriptionAtIndex(index, description)
+                    } }
                   />
                 )
               }
@@ -196,15 +205,13 @@ class App extends Component {
                     description={ item.description }
                     completed={ item.completed }
                     onToggleCompleted={ () => {
-                        console.log('TodoItem onToggleCompleted received', index)
-                        this.onToggleItemAtIndex(index)
-                      }
-                    }
+                      console.log('TodoItem onToggleCompleted received', index)
+                      this.onToggleItemAtIndex(index)
+                    } }
                     onChangeItemDescription={ ( description ) => {
                         console.log('Item changing for index', index, description)
                         this.onChangeItemDescriptionAtIndex(index, description)
-                      }
-                    }
+                    } }
                   />
                 )
               }
