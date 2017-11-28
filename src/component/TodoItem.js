@@ -3,11 +3,13 @@ import React from 'react'
 const TodoItem = ({
   description,
   completed = false, // if not passed, default to 'false'
-  onToggleCompleted
+  onToggleCompleted,
+  onChangeItemDescription
 }) => {
   function emoji(completed) {
     return completed ? '✅' : '❎'
   }
+
   return (
     <label>
       <button onClick={
@@ -17,11 +19,18 @@ const TodoItem = ({
           // Notify the powers above that the
           // concept of completed has changed
           onToggleCompleted()
-      }} >
+        }
+      } >
       { emoji(completed) }
       </button>
-      
-      { description }
+      <input
+        type="text"
+        value={ description }
+        onChange={ (event) => {
+          console.log('Typed..', event.target.value)
+          onChangeItemDescription( event.target.value )
+        }}
+      />
     </label>
   )
 }

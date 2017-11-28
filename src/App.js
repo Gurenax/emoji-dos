@@ -65,8 +65,31 @@ class App extends Component {
       // return {
       //   items: items
       // }
-      
+
       // Return the changes we have
+      return {
+        items: afterItems
+      }
+    })
+  }
+
+  onChangeItemDescriptionAtIndex = (index, description) => {
+    this.setState( (prevState) => {
+      const beforeItems = prevState.items
+      const afterItems = beforeItems.map( (item, currentIndex) => {
+        // WHen we have found the index of the item to change
+        if (currentIndex === index) {
+          const copy = {
+            ...item,
+            description: description
+          }
+          return copy
+        }
+        else {
+          return item
+        }
+      })
+      
       return {
         items: afterItems
       }
@@ -88,6 +111,18 @@ class App extends Component {
       }
     })
 
+    function filterCompletedItems(items) {
+      return items.filter( item => {
+        return item.completed
+      })
+    }
+  
+    function filterIncompleteItems(items) {
+      return items.filter( item => {
+        return !item.completed
+      })
+    }
+
     return (
       <div className="App">
         <dl>
@@ -100,7 +135,7 @@ class App extends Component {
           <dt>Total Incomplete</dt>
           <dd>{ totalIncomplete }</dd>
         </dl>
-        {
+        {/* {
           items.map( (item, index) => (
             <TodoItem
               key={ index }
@@ -111,9 +146,67 @@ class App extends Component {
                   this.onToggleItemAtIndex(index)
                 }
               }
+              onChangeItemDescription={ ( description ) => {
+                  console.log('Item changing for index', index, description)
+                  this.onChangeItemDescriptionAtIndex(index, description)
+                }
+              }
             />
           ))
-        }
+        } */}
+        <div className="completedItems">
+          <h2>Completed Items</h2>
+          {
+            items.map( (item, index) => {
+              if (item.completed) {
+                return (
+                  <TodoItem
+                    key={ index }
+                    description={ item.description }
+                    completed={ item.completed }
+                    onToggleCompleted={ () => {
+                        console.log('TodoItem onToggleCompleted received', index)
+                        this.onToggleItemAtIndex(index)
+                      }
+                    }
+                    onChangeItemDescription={ ( description ) => {
+                        console.log('Item changing for index', index, description)
+                        this.onChangeItemDescriptionAtIndex(index, description)
+                      }
+                    }
+                  />
+                )
+              }
+            })
+          }
+        </div>
+
+        <div className="incompleteItems">
+          <h2>Incomplete Items</h2>
+          {
+            items.map( (item, index) => {
+              if (!item.completed) {
+                return (
+                  <TodoItem
+                    key={ index }
+                    description={ item.description }
+                    completed={ item.completed }
+                    onToggleCompleted={ () => {
+                        console.log('TodoItem onToggleCompleted received', index)
+                        this.onToggleItemAtIndex(index)
+                      }
+                    }
+                    onChangeItemDescription={ ( description ) => {
+                        console.log('Item changing for index', index, description)
+                        this.onChangeItemDescriptionAtIndex(index, description)
+                      }
+                    }
+                  />
+                )
+              }
+            })
+          }
+        </div>
       </div>
     )
   }
